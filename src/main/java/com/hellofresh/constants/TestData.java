@@ -37,6 +37,8 @@ public class TestData {
 	public static final String ORDER_CONFIRMATION_TEXT = "ORDER CONFIRMATION";
 	public static final String ORDER_IS_COMPLETE_MESSAGE = "Your order on My Store is complete.";
 	public static final String ORDER_CONFIRMATION_URL_PART = "controller=order-confirmation";
+	public static final String FADED_SHORT_SLEEVE_TSHIRTS = "Faded Short Sleeve T-shirts";
+	public static final String WOMEN = "Women";
 
 	public static String getRandomEmail() {
 		String timestamp = String.valueOf(new Date().getTime());

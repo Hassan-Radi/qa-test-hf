@@ -63,4 +63,8 @@ public class BaseTest {
 			return driver;
 		}
 	}
+
+	public static String getUrl() {
+		return driver.getCurrentUrl();
+	}
 }

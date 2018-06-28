@@ -25,7 +25,7 @@ public class BaseTest {
 	public void beforeMethod() {
 		/**
 		 * Reusing the same driver instance would save us some time for the browser initialization
-		 * part
+		 * part. That's why we need to navigate to the homepage at the beginning of each test
 		 */
 		driver.get("http://automationpractice.com/index.php");
 	}

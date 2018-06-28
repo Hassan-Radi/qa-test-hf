@@ -35,7 +35,12 @@ public class WebTest extends BaseTest {
 
 	@Test
 	public void logInTest() {
-		String headerText = login(TestData.EXISTING_USER_EMAIL, TestData.EXISTING_USER_PASSWORD);
+		Homepage homepage = new Homepage();
+		AuthenticationPage authenticationPage = homepage.navigateToAuthenticationPage();
+
+		ProfilePage profilePage = authenticationPage.login(TestData.EXISTING_USER_EMAIL,
+				TestData.EXISTING_USER_PASSWORD);
+		String headerText = profilePage.getHeaderText();
 
 		// assert correctness of test case
 		assertCorrectness(TestData.FULL_NAME_2, headerText);
@@ -43,7 +48,11 @@ public class WebTest extends BaseTest {
 
 	@Test
 	public void checkoutTest() {
-		login(TestData.EXISTING_USER_EMAIL, TestData.EXISTING_USER_PASSWORD);
+		Homepage homepage = new Homepage();
+		AuthenticationPage authenticationPage = homepage.navigateToAuthenticationPage();
+
+		ProfilePage profilePage = authenticationPage.login(TestData.EXISTING_USER_EMAIL,
+				TestData.EXISTING_USER_PASSWORD);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Women"))).click();
 		driver.findElement(By.xpath("//a[@title='Faded Short Sleeve T-shirts']/ancestor::li")).click();
 		driver.findElement(By.xpath("//a[@title='Faded Short Sleeve T-shirts']/ancestor::li")).click();
@@ -86,24 +95,5 @@ public class WebTest extends BaseTest {
 		assertTrue("Logout button is not displayed.", driver.findElement(By.className("logout")).isDisplayed());
 		assertTrue("Page URL doesn't contain the expected text.",
 				driver.getCurrentUrl().contains(TestData.MY_ACCOUNT_URL_PART));
-	}
-
-	/**
-	 * Logs in to the system using the given credentials.
-	 * 
-	 * @param email
-	 *            The email to use when logging in to the system.
-	 * @param password
-	 *            The password to use when logging in to the system.
-	 * @return A string that represents the header text of the page after login.
-	 */
-	private String login(String email, String password) {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("login"))).click();
-		driver.findElement(By.id("email")).sendKeys(email);
-		driver.findElement(By.id("passwd")).sendKeys(password);
-		driver.findElement(By.id("SubmitLogin")).click();
-
-		WebElement header = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h1")));
-		return header.getText();
 	}
 }

@@ -10,6 +10,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.hellofresh.constants.TestData;
+
 /**
  * Base test class for the common setup and driver creation for all the test cases.
  */
@@ -40,7 +42,7 @@ public class BaseTest {
 	public static void setUp() {
 		System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
 		driver = new ChromeDriver();
-		wait = new WebDriverWait(driver, 10, 50);
+		wait = new WebDriverWait(driver, TestData.TEN_SECONDS, TestData.FIFTY_MILLI_SECONDS);
 	}
 
 	@AfterClass
@@ -51,6 +53,14 @@ public class BaseTest {
 		 */
 		if (driver != null) {
 			driver.quit();
+		}
+	}
+
+	public static WebDriver getDriver() {
+		if (driver == null) {
+			throw new RuntimeException("Tried to access the driver instance before it was initialised.");
+		} else {
+			return driver;
 		}
 	}
 }

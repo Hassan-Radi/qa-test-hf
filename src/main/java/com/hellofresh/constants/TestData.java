@@ -21,10 +21,15 @@ public class TestData {
 	public static final String CITY = "Qwerty";
 	public static final String STATE = "Colorado";
 	public static final String POST_CODE = "12345";
-	public static final String OTHER = "Qwerty";
-	public static final String PHONE = "12345123123";
+	public static final String ADDITIONAL_INFO = "Qwerty";
+	public static final String HOME_PHONE = "12345123123";
 	public static final String MOBILE_PHONE = "12345123123";
-	public static final String ALIAS = "hf";
+	public static final String ADDRESS_ALIAS = "hf";
+	public static final int TEN_SECONDS = 10;
+	public static final int FIFTY_MILLI_SECONDS = 50;
+	public static final String DAY = "1";
+	public static final String MONTH = "1";
+	public static final String YEAR = "2000";
 
 	public static final String MY_ACCOUNT_TEXT = "MY ACCOUNT";
 	public static final String WELCOME_TO_ACCOUNT_TEXT = "Welcome to your account.";

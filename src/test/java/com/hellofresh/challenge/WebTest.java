@@ -7,18 +7,27 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 
 import com.hellofresh.constants.TestData;
+import com.hellofresh.pages.AuthenticationPage;
+import com.hellofresh.pages.Homepage;
+import com.hellofresh.pages.ProfilePage;
+import com.hellofresh.pages.RegisterAccount;
 
 public class WebTest extends BaseTest {
 
 	@Test
 	public void signInTest() {
-		String headerText = registerUser(TestData.getRandomEmail(), TestData.FIRST_NAME, TestData.SURNAME,
-				TestData.PASSWORD, TestData.COMPANY, TestData.ADDRESS_1, TestData.ADDRESS_2, TestData.CITY,
-				TestData.STATE, TestData.POST_CODE, TestData.OTHER, TestData.PHONE, TestData.MOBILE_PHONE,
-				TestData.ALIAS);
+		Homepage homepage = new Homepage();
+		AuthenticationPage authenticationPage = homepage.navigateToAuthenticationPage();
+		RegisterAccount registerAccount = authenticationPage.navigateToRegisterAccountPage(TestData.getRandomEmail());
+
+		ProfilePage profilePage = registerAccount.registerUser(TestData.FIRST_NAME, TestData.SURNAME, TestData.PASSWORD,
+				TestData.DAY, TestData.MONTH, TestData.YEAR, TestData.COMPANY, TestData.ADDRESS_1, TestData.ADDRESS_2,
+				TestData.CITY, TestData.STATE, TestData.POST_CODE, TestData.ADDITIONAL_INFO, TestData.HOME_PHONE,
+				TestData.MOBILE_PHONE, TestData.ADDRESS_ALIAS);
+
+		String headerText = profilePage.getHeaderText();
 
 		// assert correctness of test case
 		assertCorrectness(TestData.FULL_NAME_1, headerText);
@@ -96,72 +105,5 @@ public class WebTest extends BaseTest {
 
 		WebElement header = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h1")));
 		return header.getText();
-	}
-
-	/**
-	 * Registers a new user given a set of values
-	 * 
-	 * @param emailAddress
-	 *            User email address
-	 * @param firstName
-	 *            User first name
-	 * @param surName
-	 *            User surname
-	 * @param password
-	 *            User password
-	 * @param company
-	 *            User company
-	 * @param address1
-	 *            User address line 1
-	 * @param address2
-	 *            User address line 2
-	 * @param city
-	 *            User city
-	 * @param state
-	 *            User state
-	 * @param postCode
-	 *            User post code value
-	 * @param other
-	 *            User other field value
-	 * @param phone
-	 *            User phone number
-	 * @param mobilePhone
-	 *            User mobile phone number
-	 * @param alias
-	 *            User alias
-	 * @return A string that represents the header text of the page that appears after registering
-	 *         the user.
-	 */
-	private String registerUser(String emailAddress, String firstName, String surName, String password, String company,
-			String address1, String address2, String city, String state, String postCode, String other, String phone,
-			String mobilePhone, String alias) {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("login"))).click();
-		driver.findElement(By.id("email_create")).sendKeys(emailAddress);
-		driver.findElement(By.id("SubmitCreate")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("id_gender2"))).click();
-		driver.findElement(By.id("customer_firstname")).sendKeys(firstName);
-		driver.findElement(By.id("customer_lastname")).sendKeys(surName);
-		driver.findElement(By.id("passwd")).sendKeys(password);
-		Select select = new Select(driver.findElement(By.id("days")));
-		select.selectByValue("1");
-		select = new Select(driver.findElement(By.id("months")));
-		select.selectByValue("1");
-		select = new Select(driver.findElement(By.id("years")));
-		select.selectByValue("2000");
-		driver.findElement(By.id("company")).sendKeys(company);
-		driver.findElement(By.id("address1")).sendKeys(address1);
-		driver.findElement(By.id("address2")).sendKeys(address2);
-		driver.findElement(By.id("city")).sendKeys(city);
-		select = new Select(driver.findElement(By.id("id_state")));
-		select.selectByVisibleText(state);
-		driver.findElement(By.id("postcode")).sendKeys(postCode);
-		driver.findElement(By.id("other")).sendKeys(other);
-		driver.findElement(By.id("phone")).sendKeys(phone);
-		driver.findElement(By.id("phone_mobile")).sendKeys(mobilePhone);
-		driver.findElement(By.id("alias")).sendKeys(alias);
-		driver.findElement(By.id("submitAccount")).click();
-
-		WebElement heading = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h1")));
-		return heading.getText();
 	}
 }

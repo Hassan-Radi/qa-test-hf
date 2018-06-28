@@ -14,6 +14,7 @@ import com.hellofresh.pages.ProductPage;
 import com.hellofresh.pages.ProfilePage;
 import com.hellofresh.pages.RegisterAccount;
 import com.hellofresh.pages.ShoppingCartPage;
+import com.hellofresh.util.DriverManager;
 
 public class WebTest extends BaseTest {
 
@@ -33,7 +34,7 @@ public class WebTest extends BaseTest {
 				profilePage.getWelcomeToAccountMessageText().contains(TestData.WELCOME_TO_ACCOUNT_TEXT));
 		assertTrue("Logout button is not displayed.", profilePage.isLogOutButtonDisplayed());
 		assertTrue("Page URL doesn't contain the expected text.",
-				driver.getCurrentUrl().contains(TestData.MY_ACCOUNT_URL_PART));
+				DriverManager.getUrl().contains(TestData.MY_ACCOUNT_URL_PART));
 	}
 
 	@Test
@@ -48,7 +49,8 @@ public class WebTest extends BaseTest {
 		assertTrue("Incorrect welcome message text.",
 				profilePage.getWelcomeToAccountMessageText().contains(TestData.WELCOME_TO_ACCOUNT_TEXT));
 		assertTrue("Logout button is not displayed.", profilePage.isLogOutButtonDisplayed());
-		assertTrue("Page URL doesn't contain the expected text.", getUrl().contains(TestData.MY_ACCOUNT_URL_PART));
+		assertTrue("Page URL doesn't contain the expected text.",
+				DriverManager.getUrl().contains(TestData.MY_ACCOUNT_URL_PART));
 	}
 
 	@Test
@@ -70,6 +72,6 @@ public class WebTest extends BaseTest {
 		assertTrue("Incorrect order completed message.",
 				orderConfirmationPage.getOrderCompletedMessageText().contains(TestData.ORDER_IS_COMPLETE_MESSAGE));
 		assertTrue("Page URL doesn't contain the expected text.",
-				getUrl().contains(TestData.ORDER_CONFIRMATION_URL_PART));
+				DriverManager.getUrl().contains(TestData.ORDER_CONFIRMATION_URL_PART));
 	}
 }

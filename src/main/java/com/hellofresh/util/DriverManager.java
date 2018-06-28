@@ -26,4 +26,8 @@ public class DriverManager {
 	public static void setWebDriver(WebDriver driver) {
 		DriverManager.driver = driver;
 	}
+
+	public static String getUrl() {
+		return driver.getCurrentUrl();
+	}
 }

@@ -10,9 +10,11 @@
  * Controlling the URL/environment to execute on using a command line argument `url`.
 
 **How to run the tests?**
+
 You can run using the following command line: `mvn clean compile test surefire-report:report -Durl=http://automationpractice.com/index.php -Dtest=WebTest -Dbrowser=chrome`
 
 **How to access the generated report**
+
 The generated report can be found under the follwing direcrtory `/target/site/surefire-report.html`. Just double click on it to open it in the default browser.
 
 **Added libraries**
@@ -21,6 +23,7 @@ The generated report can be found under the follwing direcrtory `/target/site/su
 # API Tests
 
 **How to run the tests?**
+
 Can be run normally as any Junit test cases (In Eclipse: Right click anywhere inside the class and choose Run as >> Junit Test)
 
 **Added libraries**

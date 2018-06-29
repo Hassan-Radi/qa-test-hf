@@ -39,11 +39,37 @@ public class APITest {
 
 	@Test
 	public void validateCountryResponse() {
-		/**
-		 * All the requested countries don't exist (US, DE & GB), so instead I used the following
-		 * country code instead "IN"
-		 */
-		RestAssured.baseURI = TestData.getEndPointForCountry(TestData.IN);
+		for (String[] countryEntryData : TestData.COUNTRIES_DATA) {
+			String countryMessage = countryEntryData[0];
+			String countryName = countryEntryData[1];
+			String countryAlpha2Code = countryEntryData[2];
+			String countryAlpha3Code = countryEntryData[3];
+
+			RestAssured.baseURI = TestData.getEndPointForCountry(countryAlpha2Code);
+			RequestSpecification httpRequest = RestAssured.given();
+
+			/**
+			 * Get the response and de-serialize the JSON response to a Java object that you can
+			 * access
+			 */
+			Response response = httpRequest.get();
+			CountryResponse countryResponse = response.getBody().as(CountryResponse.class);
+
+			assertEquals("Message is incorrect.", countryMessage, countryResponse.getRestResponse().getMessages()[0]);
+			assertEquals("Country name is incorrect.", countryName,
+					countryResponse.getRestResponse().getResult().getName());
+			assertEquals("Alpha2_code is incorrect.", countryAlpha2Code,
+					countryResponse.getRestResponse().getResult().getAlpha2_code());
+			assertEquals("Alpha3_code is incorrect.", countryAlpha3Code,
+					countryResponse.getRestResponse().getResult().getAlpha3_code());
+
+			response.then().assertThat().statusCode(200).and().contentType(ContentType.JSON);
+		}
+	}
+
+	@Test
+	public void nonExistingCountry() {
+		RestAssured.baseURI = TestData.getEndPointForCountry(TestData.NON_EXISTING_COUNTRY);
 		RequestSpecification httpRequest = RestAssured.given();
 
 		/**
@@ -52,19 +78,10 @@ public class APITest {
 		Response response = httpRequest.get();
 		CountryResponse countryResponse = response.getBody().as(CountryResponse.class);
 
-		assertEquals("Message is incorrect.", TestData.IN_MESSAGE, countryResponse.getRestResponse().getMessages()[0]);
-		assertEquals("Country name is incorrect.", TestData.IN_NAME,
-				countryResponse.getRestResponse().getResult().getName());
-		assertEquals("Alpha2_code is incorrect.", TestData.IN_ALPHA2_CODE,
-				countryResponse.getRestResponse().getResult().getAlpha2_code());
-		assertEquals("Alpha3_code is incorrect.", TestData.IN_ALPHA3_CODE,
-				countryResponse.getRestResponse().getResult().getAlpha3_code());
+		assertEquals("Message is incorrect.",
+				String.format(TestData.NON_EXISITNG_COUNTRY_RESPONSE_MESSAGE, TestData.NON_EXISTING_COUNTRY),
+				countryResponse.getRestResponse().getMessages()[0]);
 
 		response.then().assertThat().statusCode(200).and().contentType(ContentType.JSON);
-	}
-
-	@Test
-	public void nonExistingCountry() {
-		// NON_EXISTING_COUNTRY
 	}
 }

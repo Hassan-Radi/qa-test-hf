@@ -51,12 +51,13 @@ public class TestData {
 	public static final String US = "US";
 	public static final String DE = "DE";
 	public static final String GB = "GB";
-	public static final String IN = "IN";
-	public static final String IN_MESSAGE = "Country found matching code [IN].";
-	public static final String IN_NAME = "India";
-	public static final String IN_ALPHA2_CODE = "IN";
-	public static final String IN_ALPHA3_CODE = "IND";
-	public static final String NON_EXISTING_COUNTRY = "AZ";
+	public static final String NON_EXISTING_COUNTRY = "LO";
+	public static final String NON_EXISITNG_COUNTRY_RESPONSE_MESSAGE = "No matching country found for requested code [%s].";
+
+	public static final String[][] COUNTRIES_DATA = new String[][] {
+			{ "Country found matching code [US].", "United States of America", "US", "USA" },
+			{ "Country found matching code [DE].", "Germany", "DE", "DEU" }, { "Country found matching code [GB].",
+					"United Kingdom of Great Britain and Northern Ireland", "GB", "GBR" }, };
 
 	public static String getRandomEmail() {
 		String timestamp = String.valueOf(new Date().getTime());

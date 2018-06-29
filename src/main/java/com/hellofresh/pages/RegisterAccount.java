@@ -5,7 +5,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.hellofresh.util.SelectOption;
-import com.hellofresh.util.SelectionCriteria;
+import com.hellofresh.util.SelectionCriteriaEnum;
 
 /**
  * Page object that represents all the elements on the current website page
@@ -118,14 +118,14 @@ public class RegisterAccount extends PageObject {
 		firstNameTextBox.sendKeys(firstName);
 		lastNameTextBox.sendKeys(surName);
 		passwordTextBox.sendKeys(password);
-		new SelectOption(daysComboBox).selectBy(SelectionCriteria.SELECT_BY_VALUE, dateOfBirthDay);
-		new SelectOption(monthsComboBox).selectBy(SelectionCriteria.SELECT_BY_VALUE, dateOfBirthMonth);
-		new SelectOption(yearsComboBox).selectBy(SelectionCriteria.SELECT_BY_VALUE, dateOfBirthYear);
+		new SelectOption(daysComboBox).selectBy(SelectionCriteriaEnum.SELECT_BY_VALUE, dateOfBirthDay);
+		new SelectOption(monthsComboBox).selectBy(SelectionCriteriaEnum.SELECT_BY_VALUE, dateOfBirthMonth);
+		new SelectOption(yearsComboBox).selectBy(SelectionCriteriaEnum.SELECT_BY_VALUE, dateOfBirthYear);
 		companyTextBox.sendKeys(company);
 		address1TextBox.sendKeys(address1);
 		address2TextBox.sendKeys(address2);
 		cityTextBox.sendKeys(city);
-		new SelectOption(stateComboBox).selectBy(SelectionCriteria.SELECT_BY_VISIBLE_TEXT, state);
+		new SelectOption(stateComboBox).selectBy(SelectionCriteriaEnum.SELECT_BY_VISIBLE_TEXT, state);
 		postCodeTextBox.sendKeys(postCode);
 		additionalInfoTextBox.sendKeys(additionalInfo);
 		homePhoneTextBox.sendKeys(homephone);

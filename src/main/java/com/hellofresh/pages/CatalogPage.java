@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.hellofresh.constants.TestData;
+import com.hellofresh.util.DriverManager;
 
 /**
  * Page object that represents all the elements on the current website page
@@ -27,9 +28,16 @@ public class CatalogPage extends PageObject {
 		 * First click would show the hidden container by default. Second click would navigate to
 		 * the product page
 		 */
-		WebElement product = getProductElement(productName);
-		product.click();
-		product.click();
+		getProductElement(productName).click();
+		/**
+		 * Second click needs to be done using JavaScript in case of FireFox to prevent it from
+		 * complaining about another element getting the click
+		 */
+		if (DriverManager.isFirefox()) {
+			DriverManager.clickWithJavaScript(getProductElement(productName));
+		} else if (DriverManager.isChrome()) {
+			getProductElement(productName).click();
+		}
 
 		return new ProductPage();
 	}

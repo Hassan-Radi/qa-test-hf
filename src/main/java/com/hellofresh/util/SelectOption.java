@@ -19,7 +19,7 @@ public class SelectOption {
 	 * @param criteriaValue
 	 *            The criteria value to use
 	 */
-	public void selectBy(SelectionCriteria selectionCriteria, Object criteriaValue) {
+	public void selectBy(SelectionCriteriaEnum selectionCriteria, Object criteriaValue) {
 		Select select = new Select(element);
 
 		switch (selectionCriteria) {

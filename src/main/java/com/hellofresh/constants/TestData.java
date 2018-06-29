@@ -40,6 +40,11 @@ public class TestData {
 	public static final String FADED_SHORT_SLEEVE_TSHIRTS = "Faded Short Sleeve T-shirts";
 	public static final String WOMEN = "Women";
 
+	public static final String URL_PROPERTY = "url";
+	public static final String BROWSER_PROPERTY = "browser";
+	public static final String FIREFOX_BROWSER = "firefox";
+	public static final String CHROME_BROWSER = "chrome";
+
 	public static String getRandomEmail() {
 		String timestamp = String.valueOf(new Date().getTime());
 		return "hf_challenge_" + timestamp + "@hf" + timestamp.substring(7) + ".com";

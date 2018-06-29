@@ -8,7 +8,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
+import com.hellofresh.constants.TestData;
 import com.hellofresh.util.DriverManager;
 
 /**
@@ -21,10 +23,18 @@ public class BaseTest {
 	@Before
 	public void beforeMethod() {
 		/**
-		 * Reusing the same driver instance would save us some time for the browser initialization
-		 * part. That's why we need to navigate to the homepage at the beginning of each test
+		 * - Reusing the same driver instance would save us some time for the browser initialization
+		 * part. That's why we need to navigate to the homepage at the beginning of each test case
+		 * 
+		 * - The browser URL is to be provided as a config for each run, this allows the flexibility
+		 * to run on different environments without changing the test cases that much.
 		 */
-		DriverManager.getDriver().get("http://automationpractice.com/index.php");
+		String url = System.getProperty(TestData.URL_PROPERTY);
+		if (url == null || url.isEmpty()) {
+			throw new RuntimeException("Failed to find a value for the config \"" + TestData.URL_PROPERTY + "\".");
+		} else {
+			DriverManager.getDriver().get(url);
+		}
 	}
 
 	@After
@@ -37,8 +47,23 @@ public class BaseTest {
 
 	@BeforeClass
 	public static void setUp() {
-		System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
-		WebDriver driver = new ChromeDriver();
+		WebDriver driver = null;
+
+		/**
+		 * Browser selection is done using the command line configs.
+		 */
+		String browser = System.getProperty(TestData.BROWSER_PROPERTY);
+		if (browser == null || browser.isEmpty()) {
+			throw new RuntimeException("Failed to find a value for the config \"" + TestData.BROWSER_PROPERTY + "\".");
+		} else {
+			if (browser.equalsIgnoreCase(TestData.FIREFOX_BROWSER)) {
+				System.setProperty("webdriver.gecko.driver", "src/test/resources/geckodriver");
+				driver = new FirefoxDriver();
+			} else if (browser.equalsIgnoreCase(TestData.CHROME_BROWSER)) {
+				System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
+				driver = new ChromeDriver();
+			}
+		}
 
 		// set the driver instance globally so every class can reference it
 		DriverManager.setWebDriver(driver);

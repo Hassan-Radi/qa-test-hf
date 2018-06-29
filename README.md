@@ -6,7 +6,7 @@
  * Test cases can work on both Chrome and FireFox browsers.
  * Human readable report is generated after each test execution using Maven surefire plugin.
  * Implemented logging using Log4j library which would show the logs in the system console by deault (You can also write the logs to a file if you want).
- * Controlling the browser to execute on using a command line argument `browser`.
+ * Controlling the browser to execute on using a command line argument `browser`. You can select either `chrome` or `firefox` to run the test cases on both Chrome and Firefox browsers respectively. 
  * Controlling the URL/environment to execute on using a command line argument `url`.
 
 **How to run the tests?**

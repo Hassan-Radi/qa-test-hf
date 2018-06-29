@@ -24,7 +24,9 @@ The generated report can be found under the follwing direcrtory `/target/site/su
 
 **How to run the tests?**
 
-Can be run normally as any Junit test cases (In Eclipse: Right click anywhere inside the class and choose Run as >> Junit Test)
+Can be run normally as any Junit test cases
+ * In Eclipse: Right click anywhere inside the class and choose Run as >> Junit Test
+ * From command line: `mvn clean compile test surefire-report:report -Dtest=APITest`
 
 **Added libraries**
  * Rest-Assured: Is the base library to handle the API testing and requests/responses.

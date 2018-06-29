@@ -1,4 +1,4 @@
-# Home test task
+#Web Tests
 
 **Changes**
  * Whole test suite is designed using page object design pattern. All the test logic is encapsulated in an anstraction layer.
@@ -17,6 +17,8 @@ The generated report can be found under the follwing direcrtory `/target/site/su
 
 **Added libraries**
  * Log4j: Handles the logging mechanism in the whole project and manages the logs from different sourcesa and also allows to redirect the logs to the console and or file.
+
+#API Tests
 
 **What do you already have?**
 -----

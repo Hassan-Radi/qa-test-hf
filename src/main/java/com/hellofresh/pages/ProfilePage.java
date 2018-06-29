@@ -41,6 +41,7 @@ public class ProfilePage extends PageObject {
 	}
 
 	public CatalogPage navigateToCatalogPage(String catalogName) {
+		LOGGER.info("Clicking on the '" + catalogName + "' link...");
 		getLinkByText(catalogName).click();
 		return new CatalogPage();
 	}

@@ -32,7 +32,9 @@ public class AuthenticationPage extends PageObject {
 	private WebElement loginButton;
 
 	public RegisterAccount navigateToRegisterAccountPage(String emailAddress) {
+		LOGGER.info("Typing the email address " + emailAddress + " in the email address textbox.");
 		createEmailAddressTextBox.sendKeys(emailAddress);
+		LOGGER.info("Clicking on the 'Register account' button...");
 		createAnAccountButton.click();
 
 		return new RegisterAccount();
@@ -48,8 +50,10 @@ public class AuthenticationPage extends PageObject {
 	 * @return A page object that represents the ProfilePage
 	 */
 	public ProfilePage login(String email, String password) {
+		LOGGER.info(String.format("Logging in using credentials (Email = %s, Password = %s).", email, password));
 		loginEmailAddressTextBox.sendKeys(email);
 		loginPasswordTextBox.sendKeys(password);
+		LOGGER.info("Clicking on the login button...");
 		loginButton.click();
 
 		return new ProfilePage();

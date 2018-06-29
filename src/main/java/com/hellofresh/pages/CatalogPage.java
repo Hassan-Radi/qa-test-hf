@@ -28,6 +28,7 @@ public class CatalogPage extends PageObject {
 		 * First click would show the hidden container by default. Second click would navigate to
 		 * the product page
 		 */
+		LOGGER.info("Clicking on the product button...");
 		getProductElement(productName).click();
 		/**
 		 * Second click needs to be done using JavaScript in case of FireFox to prevent it from

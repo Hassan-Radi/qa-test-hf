@@ -36,26 +36,31 @@ public class ShoppingCartPage extends PageObject {
 
 	public OrderConfirmationPage completeCheckoutProcess() {
 		// Step 1: Summary
+		LOGGER.info("Step 1: Clicking on the proceed to checkout button.");
 		summaryProceedToCheckoutButton.click();
 
 		// Step 2: Sign in --> already signed in, moving on to the next step
 
 		// Step 3: Address
 		wait.until(ExpectedConditions.visibilityOf(addressProceedToCheckoutButton));
-
+		LOGGER.info("Step 3: Clicking on the proceed to checkout button.");
 		addressProceedToCheckoutButton.click();
 
 		// Step 4: Shipping
 		wait.until(ExpectedConditions.visibilityOf(shippingProceedToCheckoutButton));
+		LOGGER.info("Accepting the terms and conditions check-box...");
 		acceptTermsAndConditionsCheckBox.click();
+		LOGGER.info("Step 4: Clicking on the proceed to checkout button.");
 		shippingProceedToCheckoutButton.click();
 
 		// Step 5: Payment
 		wait.until(ExpectedConditions.visibilityOf(payByBankWireLink));
+		LOGGER.info("Step 5: Clicking on the pay by bank wire link...");
 		payByBankWireLink.click();
 
 		// Final step: confirm order
 		wait.until(ExpectedConditions.visibilityOf(orderConfirmationButton));
+		LOGGER.info("Clicking on the confirm order button...");
 		orderConfirmationButton.click();
 
 		return new OrderConfirmationPage();

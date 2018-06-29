@@ -114,24 +114,41 @@ public class RegisterAccount extends PageObject {
 			String dateOfBirthMonth, String dateOfBirthYear, String company, String address1, String address2,
 			String city, String state, String postCode, String additionalInfo, String homephone, String mobilePhone,
 			String addressAlias) {
+		LOGGER.info("Choosing Mrs. from the titles radio-buttons...");
 		titleMrsRadioButton.click();
+		LOGGER.info(String.format("Typing first name = %s...", firstName));
 		firstNameTextBox.sendKeys(firstName);
+		LOGGER.info("Typing surname = " + surName + "...");
 		lastNameTextBox.sendKeys(surName);
 		passwordTextBox.sendKeys(password);
+		LOGGER.info(String.format("Selecting %s from the days combo-box...", dateOfBirthDay));
 		new SelectOption(daysComboBox).selectBy(SelectionCriteriaEnum.SELECT_BY_VALUE, dateOfBirthDay);
+		LOGGER.info(String.format("Selecting %s from the months combo-box...", dateOfBirthMonth));
 		new SelectOption(monthsComboBox).selectBy(SelectionCriteriaEnum.SELECT_BY_VALUE, dateOfBirthMonth);
+		LOGGER.info(String.format("Selecting %s from the years combo-box...", dateOfBirthYear));
 		new SelectOption(yearsComboBox).selectBy(SelectionCriteriaEnum.SELECT_BY_VALUE, dateOfBirthYear);
+		LOGGER.info(String.format("Typing company = %s...", company));
 		companyTextBox.sendKeys(company);
+		LOGGER.info(String.format("Typing address 1 = %s...", address1));
 		address1TextBox.sendKeys(address1);
+		LOGGER.info(String.format("Typing address 2 = %s...", address2));
 		address2TextBox.sendKeys(address2);
+		LOGGER.info(String.format("Typing city = %s...", city));
 		cityTextBox.sendKeys(city);
+		LOGGER.info(String.format("Selecting state %s from the combo-box...", state));
 		new SelectOption(stateComboBox).selectBy(SelectionCriteriaEnum.SELECT_BY_VISIBLE_TEXT, state);
+		LOGGER.info(String.format("Typing post code = %s...", postCode));
 		postCodeTextBox.sendKeys(postCode);
+		LOGGER.info(String.format("Typing additional info = %s...", additionalInfo));
 		additionalInfoTextBox.sendKeys(additionalInfo);
+		LOGGER.info(String.format("Typing home phone = %s...", homephone));
 		homePhoneTextBox.sendKeys(homephone);
+		LOGGER.info(String.format("Typing mobile phone = %s...", mobilePhone));
 		mobilePhoneTextBox.sendKeys(mobilePhone);
+		LOGGER.info(String.format("Typing address alias = %s...", addressAlias));
 		addressAliasTextBox.sendKeys(addressAlias);
 
+		LOGGER.info("Clicking on the Register button...");
 		registerButton.click();
 
 		return new ProfilePage();

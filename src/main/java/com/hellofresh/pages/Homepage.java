@@ -20,7 +20,9 @@ public class Homepage extends PageObject {
 	private WebElement loginButton;
 
 	public AuthenticationPage navigateToAuthenticationPage() {
+		LOGGER.info("Clicking on the login button...");
 		loginButton.click();
+
 		return new AuthenticationPage();
 	}
 }

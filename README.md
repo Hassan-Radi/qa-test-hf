@@ -1,5 +1,23 @@
 # Home test task
 
+**Changes**
+ * Whole test suite is designed using page object design pattern. All the test logic is encapsulated in an anstraction layer.
+ * Test date is maintained in single file for easy changing to their values.
+ * Test cases can work on both Chrome and FireFox browsers.
+ * Human readable report is generated after each test execution using Maven surefire plugin.
+ * Implemented logging using Log4j library which would show the logs in the system console by deault (You can also write the logs to a file if you want).
+ * Controlling the browser to execute on using a command line argument `browser`.
+ * Controlling the URL/environment to execute on using a command line argument `url`.
+
+**How to run the tests?**
+You can run using the following command line: `mvn clean compile test surefire-report:report -Durl=http://automationpractice.com/index.php -Dtest=WebTest -Dbrowser=chrome`
+
+**How to access the generated report**
+The generated report can be found under the follwing direcrtory `/target/site/surefire-report.html`. Just double click on it to open it in the default browser.
+
+**Added libraries**
+ * Log4j: Handles the logging mechanism in the whole project and manages the logs from different sourcesa and also allows to redirect the logs to the console and or file.
+
 **What do you already have?**
 -----
  * web application with url http://automationpractice.com/index.php;

@@ -34,6 +34,7 @@ public class BaseTest {
 			throw new RuntimeException("Failed to find a value for the config \"" + TestData.URL_PROPERTY + "\".");
 		} else {
 			DriverManager.getDriver().get(url);
+			LOGGER.info("Starting a new test. Got a config value: " + TestData.URL_PROPERTY + " = " + url);
 		}
 	}
 
@@ -43,6 +44,7 @@ public class BaseTest {
 		 * delete all cookies in the session to be able to start the new test with no old data
 		 */
 		DriverManager.getDriver().manage().deleteAllCookies();
+		LOGGER.info("Cleaned all the session cookies to start running a new test.\n\n");
 	}
 
 	@BeforeClass
@@ -59,9 +61,11 @@ public class BaseTest {
 			if (browser.equalsIgnoreCase(TestData.FIREFOX_BROWSER)) {
 				System.setProperty("webdriver.gecko.driver", "src/test/resources/geckodriver");
 				driver = new FirefoxDriver();
+				LOGGER.info("Initializing Firefox browser...");
 			} else if (browser.equalsIgnoreCase(TestData.CHROME_BROWSER)) {
 				System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
 				driver = new ChromeDriver();
+				LOGGER.info("Initializing Chrome browser...");
 			}
 		}
 
@@ -77,6 +81,7 @@ public class BaseTest {
 		 */
 		if (DriverManager.getDriver() != null) {
 			DriverManager.getDriver().quit();
+			LOGGER.info("Terminating the driver session and killing the browser...");
 		}
 	}
 }

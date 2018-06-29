@@ -23,9 +23,11 @@ public class ProductPage extends PageObject {
 	private WebElement proceedToCheckoutButton;
 
 	public ShoppingCartPage addProductAndNavigateToShoppingCart() {
+		LOGGER.info("Clicking on the add to cart button...");
 		addToCartButton.click();
 
 		wait.until(ExpectedConditions.visibilityOf(proceedToCheckoutButton));
+		LOGGER.info("Clicking on the proceed to checkout button...");
 		proceedToCheckoutButton.click();
 
 		return new ShoppingCartPage();

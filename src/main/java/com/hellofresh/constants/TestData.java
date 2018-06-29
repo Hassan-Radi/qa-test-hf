@@ -45,6 +45,11 @@ public class TestData {
 	public static final String FIREFOX_BROWSER = "firefox";
 	public static final String CHROME_BROWSER = "chrome";
 
+	public static final String API_ALL_COUNTRIES_END_POINT = "http://services.groupkt.com/country/get/all";
+	public static final String US = "US";
+	public static final String DE = "DE";
+	public static final String GB = "GB";
+
 	public static String getRandomEmail() {
 		String timestamp = String.valueOf(new Date().getTime());
 		return "hf_challenge_" + timestamp + "@hf" + timestamp.substring(7) + ".com";

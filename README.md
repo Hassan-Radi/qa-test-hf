@@ -20,6 +20,12 @@ The generated report can be found under the follwing direcrtory `/target/site/su
 
 # API Tests
 
+**How to run the tests?**
+Can be run normally as any Junit test cases (In Eclipse: Right click anywhere inside the class and choose Run as >> Junit Test)
+
+**Added libraries**
+ * Rest-Assured: Is the base library to handle the API testing and requests/responses.
+
 **What do you already have?**
 -----
  * web application with url http://automationpractice.com/index.php;

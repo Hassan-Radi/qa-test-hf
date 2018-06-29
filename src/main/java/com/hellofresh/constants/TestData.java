@@ -48,12 +48,19 @@ public class TestData {
 	public static final String API_COUNTRIES_BASE_URL = "http://services.groupkt.com/country/get";
 	public static final String API_ALL_COUNTRIES_END_POINT = API_COUNTRIES_BASE_URL + "/all";
 	public static final String API_GET_COUNTRY_BY_CODE_END_POINT = API_COUNTRIES_BASE_URL + "/iso2code/%s";
+	public static final String API_POST_NEW_COUNTRY_END_POINT = API_COUNTRIES_BASE_URL + "/add_country";
 	public static final String US = "US";
 	public static final String DE = "DE";
 	public static final String GB = "GB";
 	public static final String NON_EXISTING_COUNTRY = "LO";
+	public static final String COUNTRY_NAME_PARAM = "name";
+	public static final String COUNTRY_ALPHA2_PARAM = "alpha2_code";
+	public static final String COUNTRY_ALPHA3_PARAM = "alpha3_code";
+	public static final String TEST_COUNTRY_NAME = "Test Country";
+	public static final String TEST_COUNTRY_ALPAH2 = "TC";
+	public static final String TEST_COUNTRY_ALPHA3 = "TCY";
+	public static final String TEST_COUNTRY_MESSAGE = "ountry found matching code [TC].";
 	public static final String NON_EXISITNG_COUNTRY_RESPONSE_MESSAGE = "No matching country found for requested code [%s].";
-
 	public static final String[][] COUNTRIES_DATA = new String[][] {
 			{ "Country found matching code [US].", "United States of America", "US", "USA" },
 			{ "Country found matching code [DE].", "Germany", "DE", "DEU" }, { "Country found matching code [GB].",

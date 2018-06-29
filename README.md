@@ -28,6 +28,7 @@ Can be run normally as any Junit test cases (In Eclipse: Right click anywhere in
 
 **Added libraries**
  * Rest-Assured: Is the base library to handle the API testing and requests/responses.
+ * json-simple: Library to create JSON objects easily and manipulate them.
 
 **What do you already have?**
 -----

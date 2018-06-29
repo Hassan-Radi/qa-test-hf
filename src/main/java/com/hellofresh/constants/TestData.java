@@ -45,13 +45,25 @@ public class TestData {
 	public static final String FIREFOX_BROWSER = "firefox";
 	public static final String CHROME_BROWSER = "chrome";
 
-	public static final String API_ALL_COUNTRIES_END_POINT = "http://services.groupkt.com/country/get/all";
+	public static final String API_COUNTRIES_BASE_URL = "http://services.groupkt.com/country/get";
+	public static final String API_ALL_COUNTRIES_END_POINT = API_COUNTRIES_BASE_URL + "/all";
+	public static final String API_GET_COUNTRY_BY_CODE_END_POINT = API_COUNTRIES_BASE_URL + "/iso2code/%s";
 	public static final String US = "US";
 	public static final String DE = "DE";
 	public static final String GB = "GB";
+	public static final String IN = "IN";
+	public static final String IN_MESSAGE = "Country found matching code [IN].";
+	public static final String IN_NAME = "India";
+	public static final String IN_ALPHA2_CODE = "IN";
+	public static final String IN_ALPHA3_CODE = "IND";
+	public static final String NON_EXISTING_COUNTRY = "AZ";
 
 	public static String getRandomEmail() {
 		String timestamp = String.valueOf(new Date().getTime());
 		return "hf_challenge_" + timestamp + "@hf" + timestamp.substring(7) + ".com";
+	}
+
+	public static String getEndPointForCountry(String countryCode) {
+		return String.format(API_GET_COUNTRY_BY_CODE_END_POINT, countryCode);
 	}
 }

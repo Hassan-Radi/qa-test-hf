@@ -1,14 +1,14 @@
-package com.hellofresh.api;
+package com.hellofresh.api.country;
 
 public class CountryResponse {
 
-	private RestResponse RestResponse;
+	private CountryRestResponse RestResponse;
 
-	public RestResponse getRestResponse() {
+	public CountryRestResponse getRestResponse() {
 		return RestResponse;
 	}
 
-	public void setRestResponse(RestResponse restResponse) {
+	public void setRestResponse(CountryRestResponse restResponse) {
 		RestResponse = restResponse;
 	}
 

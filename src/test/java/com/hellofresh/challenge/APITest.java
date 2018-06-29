@@ -1,10 +1,12 @@
 package com.hellofresh.challenge;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import com.hellofresh.api.CountryResponse;
+import com.hellofresh.api.countries.AllCountriesResponse;
+import com.hellofresh.api.country.CountryResponse;
 import com.hellofresh.constants.TestData;
 
 import io.restassured.RestAssured;
@@ -20,10 +22,10 @@ public class APITest {
 		RequestSpecification httpRequest = RestAssured.given();
 
 		/**
-		 * Get the response and deserialize the JSON response to a Java object that you can access
+		 * Get the response and de-serialize the JSON response to a Java object that you can access
 		 */
 		Response response = httpRequest.get();
-		CountryResponse countryResponse = response.getBody().as(CountryResponse.class);
+		AllCountriesResponse countryResponse = response.getBody().as(AllCountriesResponse.class);
 
 		assertTrue("Country doesn't exist in the list of returned results.",
 				countryResponse.getRestResponse().containCountry(TestData.US));
@@ -33,5 +35,36 @@ public class APITest {
 				countryResponse.getRestResponse().containCountry(TestData.GB));
 
 		response.then().assertThat().statusCode(200).and().contentType(ContentType.JSON);
+	}
+
+	@Test
+	public void validateCountryResponse() {
+		/**
+		 * All the requested countries don't exist (US, DE & GB), so instead I used the following
+		 * country code instead "IN"
+		 */
+		RestAssured.baseURI = TestData.getEndPointForCountry(TestData.IN);
+		RequestSpecification httpRequest = RestAssured.given();
+
+		/**
+		 * Get the response and de-serialize the JSON response to a Java object that you can access
+		 */
+		Response response = httpRequest.get();
+		CountryResponse countryResponse = response.getBody().as(CountryResponse.class);
+
+		assertEquals("Message is incorrect.", TestData.IN_MESSAGE, countryResponse.getRestResponse().getMessages()[0]);
+		assertEquals("Country name is incorrect.", TestData.IN_NAME,
+				countryResponse.getRestResponse().getResult().getName());
+		assertEquals("Alpha2_code is incorrect.", TestData.IN_ALPHA2_CODE,
+				countryResponse.getRestResponse().getResult().getAlpha2_code());
+		assertEquals("Alpha3_code is incorrect.", TestData.IN_ALPHA3_CODE,
+				countryResponse.getRestResponse().getResult().getAlpha3_code());
+
+		response.then().assertThat().statusCode(200).and().contentType(ContentType.JSON);
+	}
+
+	@Test
+	public void nonExistingCountry() {
+		// NON_EXISTING_COUNTRY
 	}
 }

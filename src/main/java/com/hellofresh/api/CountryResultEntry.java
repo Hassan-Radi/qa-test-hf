@@ -1,6 +1,6 @@
 package com.hellofresh.api;
 
-public class Result {
+public class CountryResultEntry {
 
 	private String name;
 	private String alpha2_code;

@@ -1,11 +1,13 @@
-package com.hellofresh.api;
+package com.hellofresh.api.countries;
 
 import java.util.Arrays;
 
-public class RestResponse {
+import com.hellofresh.api.CountryResultEntry;
+
+public class AllCountriesRestResponse {
 
 	private String[] messages;
-	private Result[] result;
+	private CountryResultEntry[] result;
 
 	public String[] getMessages() {
 		return messages;
@@ -15,11 +17,11 @@ public class RestResponse {
 		this.messages = messages;
 	}
 
-	public Result[] getResult() {
+	public CountryResultEntry[] getResult() {
 		return result;
 	}
 
-	public void setResult(Result[] result) {
+	public void setResult(CountryResultEntry[] result) {
 		this.result = result;
 	}
 
@@ -36,7 +38,7 @@ public class RestResponse {
 	 * @return True if the country exists, false oherwise.
 	 */
 	public boolean containCountry(String countryCode) {
-		for (Result currentResult : result) {
+		for (CountryResultEntry currentResult : result) {
 			if (currentResult.getAlpha2_code().equalsIgnoreCase(countryCode)) {
 				return true;
 			}
